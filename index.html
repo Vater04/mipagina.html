@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!-- Estructura base HTML5 para el sitio web del portafolio. Define el tipo de documento y el idioma principal -->
+<html lang="es">
+  <head>
+    <!-- Configuraciones básicas del documento, incluyendo codificación y diseño responsive -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portafolio de Alex</title>
+
+    <!-- Fuente personalizada desde Google Fonts para mejorar la tipografía del sitio -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Librería de iconos Font Awesome para mostrar íconos de redes sociales -->
+    <script
+      src="https://kit.fontawesome.com/a2c5b5684c.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* Reset básico de márgenes y paddings. Se aplica una fuente global y scroll suave */
+      * {
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Estilo global del cuerpo del sitio. Fondo con gradiente y color de texto base */
+      body {
+        background: linear-gradient(to bottom, #0f172a, #1e293b);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Header con saludo principal. Usa gradiente horizontal y tipografía destacada */
+      header {
+        padding: 60px 20px;
+        text-align: center;
+        background: linear-gradient(to right, #38bdf8, #0ea5e9);
+        color: #0f172a;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      /* Menú de navegación sticky. Se mantiene visible al hacer scroll */
+      nav {
+        position: sticky;
+        top: 0;
+        background-color: #1e293b;
+        display: flex;
+        justify-content: space-around;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      nav a {
+        color: #38bdf8;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px;
+      }
+
+      nav a:hover {
+        background-color: #0ea5e9;
+        border-radius: 5px;
+      }
+
+      /* Diseño principal con Flexbox para centrar las secciones verticalmente */
+      main {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Estilo para cada sección principal. Usa padding, sombra y fondo oscuro */
+      section {
+        margin: 40px auto;
+        padding: 20px;
+        max-width: 800px;
+        text-align: center;
+        background: #1e293b;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Galería con Flexbox para distribución de tarjetas en cuadrícula responsiva */
+      .galeria {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      /* Cada tarjeta del portafolio. Incluye sombra, transición y efecto hover */
+      .card {
+        background: linear-gradient(to bottom right, #1e293b, #334155);
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease, background 0.3s ease;
+        border: 1px solid #3b4b60;
+        animation: fadeInUp 0.6s ease both;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        background: linear-gradient(to bottom right, #334155, #475569);
+      }
+
+      .card textarea {
+        width: 100%;
+        resize: none;
+        overflow: hidden;
+        background: #1e293b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px;
+        margin-top: 10px;
+        box-sizing: border-box;
+      }
+
+      .card input.title-input {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        padding: 6px;
+        background: #0f172a;
+        color: #fff;
+      }
+
+      /* Botones modernos con color llamativo y transición suave */
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #38bdf8;
+        color: #000;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #0ea5e9;
+      }
+
+      /* Campos del formulario de contacto: diseño limpio y responsivo */
+      #contactoForm input,
+      #contactoForm textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+      }
+
+      /* Pie de página con íconos sociales y contacto personal */
+      footer {
+        text-align: center;
+        background-color: #0f172a;
+        padding: 30px;
+        font-size: 0.95rem;
+      }
+
+      footer a {
+        margin: 0 10px;
+        color: #38bdf8;
+      }
+
+      /* Estilo del texto generado dinámicamente para datos curiosos */
+      #datoCurioso p {
+        margin-top: 15px;
+        font-style: italic;
+        color: #cbd5e1;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .card.over {
+        border: 2px dashed #38bdf8;
+        transform: scale(1.02);
+        transition: border 0.2s ease, transform 0.2s ease;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header con presentación y saludo de bienvenida -->
+    <header>
+      <h1>¡Hola! Soy Alex Guerra</h1>
+      <p>Bienvenido a mi portafolio personal y espacio creativo</p>
+    </header>
+
+    <!-- Menú de navegación principal con enlaces ancla a secciones -->
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#sobreMi">Sobre mí</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <main>
+      <!-- Sección de inicio con botón de saludo interactivo -->
+      <section id="inicio">
+        <h2>Inicio</h2>
+        <p>
+          ¡Gracias por visitar mi sitio! Presiona el botón para recibir un
+          saludo.
+        </p>
+        <button onclick="saludar()">Salúdame</button>
+      </section>
+
+      <!-- Sección personal con botón que genera un dato curioso -->
+      <section id="sobreMi">
+        <h2>Sobre mí</h2>
+        <p>
+          Soy Alejandro Michel Guerra Rodríguez, pero todos me dicen Alex. Nací
+          en La Habana, Cuba, y actualmente estudio Administración e Innovación
+          de Negocios en la Universidad La Salle, en CDMX. Desde pequeño crecí
+          rodeado de arte y restauración gracias a mis padres, quienes se
+          dedican a devolverle la vida a fachadas e iglesias antiguas en mi
+          país. Hoy me apasiona construir cosas nuevas, mezclar creatividad con
+          estrategia, y pensar en soluciones reales que puedan mejorar la vida
+          de las personas. Me interesa el mundo empresarial, la tecnología, el
+          diseño, las ventas y cómo todo eso puede conectarse con el impacto
+          social. También soy fan del anime, el gym, la natación, y disfruto
+          mucho pasar tiempo con mi familia y mis amigos, aunque actualmente
+          vivo en México con mi hermana. Este sitio es una forma de expresar lo
+          que he aprendido, lo que me mueve y lo que quiero construir. Gracias
+          por pasar a conocerme.
+        </p>
+        <button onclick="mostrarDato()">Mostrar un dato curioso</button>
+        <div id="datoCurioso"></div>
+      </section>
+
+      <!-- Galería dinámica que permite cargar imágenes desde el dispositivo -->
+      <section id="galeria">
+        <h2>Galería</h2>
+        <input type="file" accept="image/*" onchange="agregarImagen(event)" />
+        <div class="galeria" id="contenedorGaleria">
+          <!-- Las tarjetas se renderizan dinámicamente desde localStorage -->
+        </div>
+      </section>
+
+      <!-- Formulario de contacto simple con validación -->
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <form id="contactoForm" onsubmit="return validarFormulario()">
+          <input type="text" id="nombre" placeholder="Tu nombre" />
+          <textarea id="mensaje" placeholder="Tu mensaje"></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer con datos personales y enlaces sociales -->
+    <footer>
+      <p>&copy; 2025 Alejandro Michel Guerra Rodríguez</p>
+      <p>Contacto: alejandro.guerra@lasallistas.org.mx | Tel: 9981230400</p>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </footer>
+
+    <script>
+      // Esta función saluda al usuario mediante una alerta. Uso básico de alert() como en el Módulo 4.
+      function saludar() {
+        alert("¡Hola! Bienvenido a mi portafolio personal.");
+      }
+
+      // Genera dinámicamente un párrafo con un dato curioso seleccionado aleatoriamente
+      function mostrarDato() {
+        const datos = [
+          "Dato curioso: el corazón humano genera presión para lanzar sangre a 10 metros.",
+          "Dato curioso: los pulpos tienen tres corazones y sangre azul.",
+          "Dato curioso: una nube promedio pesa alrededor de 500 toneladas.",
+          "Dato curioso: el 20% del oxígeno que respiras lo consume tu cerebro.",
+        ];
+        const div = document.getElementById("datoCurioso");
+        div.innerHTML = "";
+        const parrafo = document.createElement("p");
+        const aleatorio = datos[Math.floor(Math.random() * datos.length)];
+        parrafo.textContent = aleatorio;
+        div.appendChild(parrafo);
+      }
+
+      // Valida que los campos del formulario no estén vacíos. Devuelve mensajes claros usando alert()
+      function validarFormulario() {
+        const nombre = document.getElementById("nombre").value.trim();
+        const mensaje = document.getElementById("mensaje").value.trim();
+        if (!nombre || !mensaje) {
+          alert("Por favor completa todos los campos antes de enviar.");
+          return false;
+        }
+        alert("¡Gracias por tu mensaje!");
+        return true;
+      }
+
+      // Carga una imagen del usuario, la convierte en base64 y la guarda en localStorage
+      function agregarImagen(event) {
+        const archivo = event.target.files[0];
+        if (archivo) {
+          const lector = new FileReader();
+          lector.onload = function (e) {
+            const galeria =
+              JSON.parse(localStorage.getItem("galeriaStorage")) || [];
+            galeria.push({ img: e.target.result, desc: "", title: "" });
+            localStorage.setItem("galeriaStorage", JSON.stringify(galeria));
+            renderGaleria();
+          };
+          lector.readAsDataURL(archivo);
+        }
+      }
+
+      // Guarda la descripción escrita por el usuario y ajusta el alto del textarea automáticamente
+      function guardarDescripcion(index, textarea) {
+        const galeria = JSON.parse(localStorage.getItem("galeriaStorage"));
+        galeria[index].desc = textarea.value;
+        localStorage.setItem("galeriaStorage", JSON.stringify(galeria));
+        textarea.style.height = "auto";
+        textarea.style.height = textarea.scrollHeight + "px";
+      }
+
+      // Guarda el título del proyecto cuando el usuario lo escribe o modifica
+      function guardarTitulo(index, input) {
+        const galeria = JSON.parse(localStorage.getItem("galeriaStorage"));
+        galeria[index].title = input.value;
+        localStorage.setItem("galeriaStorage", JSON.stringify(galeria));
+      }
+
+      // Elimina una imagen de la galería y actualiza el almacenamiento
+      function eliminarImagen(index) {
+        const galeria = JSON.parse(localStorage.getItem("galeriaStorage"));
+        galeria.splice(index, 1);
+        localStorage.setItem("galeriaStorage", JSON.stringify(galeria));
+        renderGaleria();
+      }
+
+      // Renderiza todas las imágenes guardadas en localStorage con sus títulos y descripciones
+      function renderGaleria() {
+        const contenedor = document.getElementById("contenedorGaleria");
+        contenedor.innerHTML = "";
+        const galeria =
+          JSON.parse(localStorage.getItem("galeriaStorage")) || [];
+        galeria.forEach((item, i) => {
+          const div = document.createElement("div");
+          div.classList.add("card");
+
+          // 🟦 Aquí añadimos los atributos para hacerla arrastrable
+          div.setAttribute("draggable", "true"); // Habilita que se pueda arrastrar
+          div.setAttribute("data-index", i); // Guarda el índice de la tarjeta
+
+          div.innerHTML = `
+  <button class='eliminar' onclick='eliminarImagen(${i})'>×</button>
+  <input class='title-input' placeholder='Título del proyecto' value='${
+    item.title || ""
+  }' oninput='guardarTitulo(${i}, this)'>
+  <img src="${
+    item.img
+  }" alt="Imagen subida" style="width:100%; border-radius: 10px;">
+  <textarea 
+    placeholder='Escribe una descripción...' 
+    oninput='guardarDescripcion(${i}, this)' 
+    rows="1"
+    onload="this.style.height='auto'; this.style.height=this.scrollHeight + 'px';"
+    onfocus="this.style.height='auto'; this.style.height=this.scrollHeight + 'px';"
+  >${item.desc}</textarea>
+`;
+
+          contenedor.appendChild(div);
+
+          div.addEventListener("dragstart", handleDragStart, false);
+          div.addEventListener("dragenter", handleDragEnter, false);
+          div.addEventListener("dragover", handleDragOver, false);
+          div.addEventListener("dragleave", handleDragLeave, false);
+          div.addEventListener("drop", handleDrop, false);
+          div.addEventListener("dragend", handleDragEnd, false);
+        });
+      }
+      // Manejo del drag and drop en la galería
+      let dragSrcEl = null;
+
+      function handleDragStart(e) {
+        this.style.opacity = "0.5";
+        dragSrcEl = this;
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/plain", this.dataset.index);
+      }
+
+      function handleDragOver(e) {
+        e.preventDefault(); // Necesario para permitir drop
+        return false;
+      }
+
+      function handleDragEnter(e) {
+        this.classList.add("over");
+      }
+
+      function handleDragLeave(e) {
+        this.classList.remove("over");
+      }
+
+      function handleDrop(e) {
+        e.stopPropagation();
+        const origen = parseInt(e.dataTransfer.getData("text/plain"));
+        const destino = parseInt(this.dataset.index);
+
+        if (origen !== destino) {
+          const galeria = JSON.parse(localStorage.getItem("galeriaStorage"));
+          const temp = galeria[origen];
+          galeria[origen] = galeria[destino];
+          galeria[destino] = temp;
+          localStorage.setItem("galeriaStorage", JSON.stringify(galeria));
+          renderGaleria();
+        }
+        return false;
+      }
+
+      function handleDragEnd(e) {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card) => {
+          card.classList.remove("over");
+          card.style.opacity = "1";
+        });
+      }
+
+      // Al cargar la página, se muestra la galería guardada si existe
+      window.onload = () => {
+        renderGaleria();
+      };
+    </script>
+  </body>
+</html>
